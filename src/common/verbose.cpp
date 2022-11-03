@@ -203,6 +203,11 @@ std::ostream &operator<<(std::ostream &ss, format_kind_t format_kind) {
     return ss;
 }
 
+std::ostream &operator<<(std::ostream &ss, sparse_encoding_t encoding) {
+    ss << dnnl_sparse_encoding2str(encoding);
+    return ss;
+}
+
 std::string flags2str(unsigned flags) {
     std::string s;
     if (flags & normalization_flags::use_global_stats) s += "G";
@@ -299,6 +304,7 @@ std::string md2fmt_str(const memory_desc_t *md) {
     ss << (offset0 ? "0" : "") << ":" << mdw.format_kind() << ":";
 
     if (mdw.is_blocking_desc()) ss << md2fmt_tag_str(md);
+    if (mdw.is_sparse_desc()) ss << mdw.encoding();
 
     ss << mdw.extra();
 

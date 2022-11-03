@@ -190,6 +190,7 @@ const format_kind_t opaque = dnnl_format_kind_opaque;
 const format_kind_t internal_only_start = (format_kind_t)(1 << 8);
 const format_kind_t wino = internal_only_start;
 const format_kind_t rnn_packed = (format_kind_t)(internal_only_start + 1);
+const format_kind_t sparse = dnnl_format_sparse;
 } // namespace format_kind
 
 using format_tag_t = dnnl_format_tag_t;
@@ -1497,6 +1498,17 @@ const normalization_flags_t fuse_norm_relu = dnnl_fuse_norm_relu;
 const normalization_flags_t fuse_norm_add_relu = dnnl_fuse_norm_add_relu;
 } // namespace normalization_flags
 
+using sparse_encoding_t = dnnl_sparse_encoding_t;
+namespace sparse_encoding {
+const sparse_encoding_t undef = dnnl_sparse_encoding_undef;
+const sparse_encoding_t any = dnnl_sparse_encoding_any;
+const sparse_encoding_t csr = dnnl_sparse_encoding_csr;
+const sparse_encoding_t csc = dnnl_sparse_encoding_csc;
+const sparse_encoding_t bcsr = dnnl_sparse_encoding_bcsr;
+const sparse_encoding_t bcsc = dnnl_sparse_encoding_bcsc;
+const sparse_encoding_t packed = dnnl_sparse_encoding_packed;
+} // namespace sparse_encoding
+
 using engine_kind_t = dnnl_engine_kind_t;
 namespace engine_kind {
 const engine_kind_t any_engine = dnnl_any_engine;
@@ -1630,6 +1642,7 @@ const query_t inner_idxs = dnnl_query_inner_idxs;
 const query_t internal_only_start = (query_t)(1 << 12);
 const query_t zero_pad_d = internal_only_start;
 const query_t preferred_gpu_threads_per_eu = (query_t)(internal_only_start + 1);
+const query_t sparse_encoding = dnnl_query_sparse_encoding;
 } // namespace query
 
 using rnn_direction_t = dnnl_rnn_direction_t;

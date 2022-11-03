@@ -590,6 +590,10 @@ status_t dnnl_memory_desc_query(
             if (!is_blocked) return status::invalid_arguments;
             *(const dims_t **)result = &md->format_desc.blocking.inner_idxs;
             break;
+        case query::sparse_encoding:
+            if (md->format_kind != format_kind::sparse) return status::invalid_arguments;
+            *(const dnnl_sparse_encoding_t **)result = &md->format_desc.sparse_desc.encoding;
+            break;
         default: return status::unimplemented;
     }
     return status::success;
