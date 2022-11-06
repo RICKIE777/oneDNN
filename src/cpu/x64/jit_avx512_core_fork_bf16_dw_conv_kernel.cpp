@@ -591,7 +591,7 @@ void jit_avx512_fork_dw_conv_fwd_kernel_bf16::generate() {
                 % (cpu_isa_traits<avx512_core>::vlen / sizeof(float));
         static constexpr bool use_exact_tail_scalar_bcast = false;
         const binary_injector::rhs_arg_static_params_t rhs_sp {
-            helper_vmm_idx, reserved_eltwise_gpr, r10, r11, preserve_gpr,
+            helper_vmm_idx, r10, r11, r12, preserve_gpr,
             preserve_vmm, GET_OFF(post_ops_binary_rhs_arg_vec),
             GET_OFF(dst_orig), memory_desc_wrapper(&dst_md_),
             tail_size, k_oc_tail_mask, use_exact_tail_scalar_bcast};

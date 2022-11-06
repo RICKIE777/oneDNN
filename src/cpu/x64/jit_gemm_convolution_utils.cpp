@@ -66,7 +66,7 @@ struct jit_pp_kernel_t : pp_kernel_t, public jit_generator {
             static constexpr size_t tail_size = 0;
             static constexpr bool use_exact_tail_scalar_bcast = false;
             const binary_injector::rhs_arg_static_params_t rhs_sp {
-                helper_vmm_idx, reserved_eltwise_gpr, r13, r14, preserve_gpr,
+                helper_vmm_idx, r13, r14, r15, preserve_gpr,
                 preserve_vmm, PARAM_OFF(post_ops_binary_rhs_arg_vec),
                 PARAM_OFF(dst_orig), memory_desc_wrapper(pd->dst_md()),
                 tail_size, kreg_rem_mask, use_exact_tail_scalar_bcast};
@@ -155,7 +155,6 @@ private:
     Xbyak::Reg64 reg_d_bias = r15;
     Xbyak::Reg64 reg_post_ops_data = rax;
     Vmm vreg_d_weights, vreg_d_bias;
-    Xbyak::Reg64 reserved_eltwise_gpr = r10;
 
     int idx_compute_vreg_start_;
     int idx_compute_vreg_max_;
