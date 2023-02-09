@@ -83,7 +83,7 @@ struct exec_ctx_t {
 
     void register_memory_mapping(void *handle, void *host_ptr);
 
-    void *host_ptr(int arg, int index = 0, bool do_zeropad = false,
+    void *host_ptr(int arg, bool do_zeropad = false,
             status_t *status = nullptr) const;
     void *host_ptr(const memory_storage_t *mem_storage) const;
 
